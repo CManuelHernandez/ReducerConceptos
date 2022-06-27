@@ -42,6 +42,21 @@ export const MisJuegos = () => {
     dispatch(action);
   };
 
+  const editar = (e, id) => {
+    let juego = {
+      id,
+      titulo: e.target.value,
+      descripcion: e.target.value,
+    };
+
+    const action = {
+      type: "editar",
+      payload: juego,
+    };
+
+    dispatch(action);
+  };
+
   return (
     <div>
       <h1>Estos son mis VideoJuegos</h1>
@@ -54,6 +69,7 @@ export const MisJuegos = () => {
             {juego.titulo}
             &nbsp;
             <button onClick={(e) => borramelo(juego.id)}>X</button>
+            <input type="text" onBlur={(e) => editar(e, juego.id)} />
           </li>
         ))}
       </ul>
