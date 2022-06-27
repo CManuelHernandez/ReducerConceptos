@@ -22,18 +22,40 @@ export const MisJuegos = () => {
     };
 
     console.log(juego);
+
+    const accion = {
+      type: "crear",
+      payload: juego,
+    };
+
+    dispatch(accion);
+
+    console.log(juegos);
+  };
+
+  const borramelo = (id) => {
+    const action = {
+      type: "borrar",
+      payload: id,
+    };
+
+    dispatch(action);
   };
 
   return (
     <div>
       <h1>Estos son mis VideoJuegos</h1>
 
-      <p>Numero de videojuegos: 15</p>
+      <p>Numero de videojuegos: {juegos.length}</p>
 
       <ul>
-        <li>Gta</li>
-        <li>Gta2</li>
-        <li>Gta3</li>
+        {juegos.map((juego) => (
+          <li key={juego.id}>
+            {juego.titulo}
+            &nbsp;
+            <button onClick={(e) => borramelo(juego.id)}>X</button>
+          </li>
+        ))}
       </ul>
 
       <h3>Agregar Juego</h3>
